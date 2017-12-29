@@ -22,11 +22,12 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IOrdersData, OrdersData>();
+            services.AddSingleton<IOrderService, OrderService>();
             services.AddSingleton<OrdersSchema>();
             services.AddSingleton<OrdersQuery>();
             services.AddSingleton<OrderType>();
-            services.AddSingleton<OrderInputType>();
+            services.AddSingleton<OrderCreateInputType>();
+            services.AddSingleton<OrderActionInputType>();
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<CustomerType>();
             services.AddSingleton<OrderStatusesEnum>();

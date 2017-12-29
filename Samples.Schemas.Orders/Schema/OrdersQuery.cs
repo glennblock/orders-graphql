@@ -10,14 +10,14 @@ namespace Samples.Schemas.Orders
             Name = "Query";
             Field<ListGraphType<OrderType>>(
                 "orders",
-                resolve: context => orders.GetOrdersAsync()
+                resolve: context => orders.GetAsync()
             );
             Field<OrderType>(
                 "order",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "id", Description = "id of the order" }
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "id" }
                 ),
-                resolve: context => orders.GetOrderByIdAsync(context.GetArgument<string>("id"))
+                resolve: context => orders.GetByIdAsync(context.GetArgument<string>("id"))
             );
             Field<ListGraphType<CustomerType>>(
                 "customers",
@@ -26,7 +26,7 @@ namespace Samples.Schemas.Orders
             Field<CustomerType>(
                 "customer",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<DecimalGraphType>> { Name = "id", Description = "id of the order" }
+                    new QueryArgument<NonNullGraphType<DecimalGraphType>> { Name = "id" }
                 ),
                 resolve: context => customers.GetCustomerByIdAsync(context.GetArgument<int>("id"))
             );

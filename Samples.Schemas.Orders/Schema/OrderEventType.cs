@@ -6,11 +6,15 @@ namespace Samples.Schemas.Orders
     {
         public OrderEventType()
         {
-            Field(e => e.Id);
-            Field(e => e.OrderName);
-            Field(e => e.OrderId);
-            Field<OrderStatusesEnum>("status");
-            Field(e => e.Timestamp);
+            Field(e => e.Id)
+                .Description("Event Id");
+            Field(e => e.OrderName)
+                .Description("Order Name");
+            Field(e => e.OrderId)
+                .Description("Order Id");
+            Field<OrderStatusesEnum>("status", "Status for the order");
+            Field(e => e.Timestamp)
+                .Description("When the event occured");
         }
     }
 }

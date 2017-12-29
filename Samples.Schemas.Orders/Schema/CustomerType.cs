@@ -9,8 +9,10 @@ namespace Samples.Schemas.Orders
     {
         public CustomerType()
         {
-            Field(c => c.Id);
-            Field(c => c.Name);
+            Field(c => c.Id)
+                .Description("Customer Id");
+            Field(c => c.Name)
+                .Description("Customer Name");
         }
     }
 }

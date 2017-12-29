@@ -2,7 +2,7 @@
 
 namespace Samples.Schemas.Orders
 {
-    public class OrderInput
+    public class OrderCreateInput
     {
         public string Name { get; set; }
         public string Description { get; set; }
