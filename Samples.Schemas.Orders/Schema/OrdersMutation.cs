@@ -7,7 +7,7 @@ namespace Samples.Schemas.Orders
 {
     public class OrdersMutation : ObjectGraphType<object>
     {
-        public OrdersMutation(IOrdersData orders, ICustomerData customers)
+        public OrdersMutation(IOrdersData orders, ICustomerService customers)
         {
             Name = "Mutation";
 

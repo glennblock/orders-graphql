@@ -27,13 +27,13 @@ namespace Server
             services.AddSingleton<OrdersQuery>();
             services.AddSingleton<OrderType>();
             services.AddSingleton<OrderInputType>();
-            services.AddSingleton<ICustomerData, CustomerData>();
+            services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<CustomerType>();
             services.AddSingleton<OrderStatusesEnum>();
             services.AddSingleton<OrdersMutation>();
             services.AddSingleton<OrderEventSubscriptions>();
             services.AddSingleton<OrderEventType>();
-            services.AddSingleton<IOrderEvents, OrderEvents>();
+            services.AddSingleton<IOrderEventService, OrderEventService>();
             services.AddSingleton<IEventAggregator, SimpleEventAggregator>();
 
             services.AddGraphQLHttp();

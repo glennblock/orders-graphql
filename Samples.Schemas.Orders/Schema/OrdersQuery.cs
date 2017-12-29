@@ -5,7 +5,7 @@ namespace Samples.Schemas.Orders
 {
     public class OrdersQuery : ObjectGraphType<object>
     {
-        public OrdersQuery(IOrdersData orders, ICustomerData customers, IOrderEvents events)
+        public OrdersQuery(IOrderService orders, ICustomerService customers, IOrderEventService events)
         {
             Name = "Query";
             Field<ListGraphType<OrderType>>(

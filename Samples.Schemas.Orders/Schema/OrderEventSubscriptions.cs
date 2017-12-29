@@ -10,9 +10,9 @@ namespace Samples.Schemas.Orders
 {
     public class OrderEventSubscriptions : ObjectGraphType<object>
     {
-        private readonly IOrderEvents _events;
+        private readonly IOrderEventService _events;
 
-        public OrderEventSubscriptions(IOrderEvents events) 
+        public OrderEventSubscriptions(IOrderEventService events) 
         {
             _events = events;
             AddField(new EventStreamFieldType
