@@ -9,7 +9,7 @@ namespace Samples.Schemas.Orders
             Field(e => e.Id);
             Field(e => e.OrderName);
             Field(e => e.OrderId);
-            Field<ListGraphType<OrderStatusesEnum>>("status", "Status of the order.");
+            Field<OrderStatusesEnum>("status");
             Field(e => e.Timestamp);
         }
     }

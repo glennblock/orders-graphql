@@ -29,6 +29,7 @@ namespace Server
             services.AddSingleton<OrderInputType>();
             services.AddSingleton<ICustomerData, CustomerData>();
             services.AddSingleton<CustomerType>();
+            services.AddSingleton<OrderStatusesEnum>();
             services.AddSingleton<OrdersMutation>();
             services.AddSingleton<OrderEventSubscriptions>();
             services.AddSingleton<OrderEventType>();

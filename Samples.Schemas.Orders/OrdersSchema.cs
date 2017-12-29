@@ -4,11 +4,11 @@ namespace Samples.Schemas.Orders
 {
     public class OrdersSchema : Schema
     {
-        public OrdersSchema(IOrdersData orders, ICustomerData customers, IOrderEvents events)
+        public OrdersSchema(OrdersQuery query, OrdersMutation mutation, OrderEventSubscriptions subscription)
         {
-            Query = new OrdersQuery(orders, customers, events);
-            Mutation = new OrdersMutation(orders, customers);
-            Subscription = new OrderEventSubscriptions(events);
+            Query = query;
+            Mutation = mutation;
+            Subscription = subscription;
         }
     }
 }
