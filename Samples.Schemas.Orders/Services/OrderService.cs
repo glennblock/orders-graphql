@@ -8,9 +8,11 @@ namespace Samples.Schemas.Orders
     public class OrderService : IOrderService
     {
         private IList<Order> _orders;
+        private IOrderEventService _events;
 
-        public OrderService(ICustomerService customerData)
+        public OrderService(ICustomerService customerData, IOrderEventService events)
         {
+            _events = events;
             _orders = new List<Order>();
             _orders.Add(new Order("Test 1", "Test 1 description", DateTime.Now, customerData.GetCustomerById(1), "FAEBD971-CBA5-4CED-8AD5-CC0B8D4B7827"));
             _orders.Add(new Order("Test 2", "Test 2 description", DateTime.Now.AddHours(1), customerData.GetCustomerById(2), "F43A4F9D-7AE9-4A19-93D9-2018387D5378"));
@@ -40,6 +42,8 @@ namespace Samples.Schemas.Orders
         public Task<Order> CreateAsync(Order order)
         {
             _orders.Add(order);
+            var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.CREATED, order.Created);
+            _events.AddEvent(orderEvent);
             return Task.FromResult(order);
         }
 
@@ -47,6 +51,8 @@ namespace Samples.Schemas.Orders
         {
             var order = GetById(orderId);
             order.Start();
+            var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.PROCESSING, DateTime.Now);
+            _events.AddEvent(orderEvent);
             return Task.FromResult(order);
         }
 
@@ -54,6 +60,8 @@ namespace Samples.Schemas.Orders
         {
             var order = GetById(orderId);
             order.Complete();
+            var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.COMPLETED, DateTime.Now);
+            _events.AddEvent(orderEvent);
             return Task.FromResult(order);
         }
 
@@ -61,6 +69,8 @@ namespace Samples.Schemas.Orders
         {
             var order = GetById(orderId);
             order.Close();
+            var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.CLOSED, DateTime.Now);
+            _events.AddEvent(orderEvent);
             return Task.FromResult(order);
         }
 
@@ -68,7 +78,10 @@ namespace Samples.Schemas.Orders
         {
             var order = GetById(orderId);
             order.Complete();
+            var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.CANCELLED, DateTime.Now);
+            _events.AddEvent(orderEvent);
             return Task.FromResult(order);
         }
+
     }
 }

@@ -22,6 +22,7 @@ namespace Server
         {
             services.AddSingleton<IOrderService, OrderService>();
             services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<IOrderEventService, OrderEventService>();
             services.AddSingleton<OrderType>();
             services.AddSingleton<CustomerType>();
             services.AddSingleton<OrderStatusesEnum>();
