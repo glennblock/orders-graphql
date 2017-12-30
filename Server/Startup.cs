@@ -1,4 +1,5 @@
 using GraphQL.Server.Transports.AspNetCore;
+using GraphQL.Server.Transports.WebSockets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,8 @@ namespace Server
             services.AddSingleton<OrderStatusesEnum>();
             services.AddSingleton<OrdersQuery>();
             services.AddSingleton<OrdersSchema>();
+            services.AddGraphQLHttp();
+            services.AddGraphQLWebSocket<OrdersSchema>();
             services.AddMvc();
         }
 
@@ -37,6 +40,9 @@ namespace Server
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseWebSockets();
+            app.UseGraphQLWebSocket<OrdersSchema>(new GraphQLWebSocketsOptions());
+            app.UseGraphQLHttp<OrdersSchema>(new GraphQLHttpOptions());
             app.UseMvc();
         }
     }
