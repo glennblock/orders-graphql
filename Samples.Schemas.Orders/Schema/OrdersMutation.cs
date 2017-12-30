@@ -79,8 +79,6 @@ namespace Samples.Schemas.Orders
                 },
                 description: "Cancel an order"
             );
-
-
         }
     }
 }
