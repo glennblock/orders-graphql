@@ -77,7 +77,7 @@ namespace Samples.Schemas.Orders
         public Task<Order> CancelAsync(string orderId)
         {
             var order = GetById(orderId);
-            order.Complete();
+            order.Cancel();
             var orderEvent = new OrderEvent(order.Id, order.Name, OrderStatuses.CANCELLED, DateTime.Now);
             _events.AddEvent(orderEvent);
             return Task.FromResult(order);
