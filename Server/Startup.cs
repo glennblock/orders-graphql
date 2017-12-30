@@ -26,6 +26,8 @@ namespace Server
             services.AddSingleton<CustomerType>();
             services.AddSingleton<OrderStatusesEnum>();
             services.AddSingleton<OrdersQuery>();
+            services.AddSingleton<OrderCreateInputType>();
+            services.AddSingleton<OrdersMutation>();
             services.AddSingleton<OrdersSchema>();
             services.AddGraphQLHttp();
             services.AddGraphQLWebSocket<OrdersSchema>();
