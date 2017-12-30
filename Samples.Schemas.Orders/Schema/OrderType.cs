@@ -11,7 +11,10 @@ namespace Samples.Schemas.Orders
             Field(o => o.Description);
             Field<CustomerType>("customer",
                 resolve: context => context.Source.Customer);
+            Field<OrderStatusesEnum>("status",
+                resolve: context => context.Source.Status);
             Field(o => o.Created);
+
         }
     }
 }
