@@ -21,6 +21,11 @@ namespace Server
         {
             services.AddSingleton<IOrderService, OrderService>();
             services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<OrderType>();
+            services.AddSingleton<CustomerType>();
+            services.AddSingleton<OrderStatusesEnum>();
+            services.AddSingleton<OrdersQuery>();
+            services.AddSingleton<OrdersSchema>();
             services.AddGraphQLHttp();
             services.AddMvc();
         }
@@ -33,6 +38,7 @@ namespace Server
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseGraphQLHttp<OrdersSchema>(new GraphQLHttpOptions());
             app.UseMvc();
         }
     }

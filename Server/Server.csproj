@@ -27,10 +27,4 @@
     <ProjectReference Include="..\Samples.Schemas.Orders\Samples.Schemas.Orders.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="wwwroot\index.html">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
