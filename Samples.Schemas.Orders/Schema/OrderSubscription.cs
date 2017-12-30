@@ -8,12 +8,13 @@ using System.Collections.Generic;
 
 namespace Samples.Schemas.Orders
 {
-    public class OrderEventSubscriptions : ObjectGraphType<object>
+    public class OrderSubscription : ObjectGraphType<object>
     {
         private readonly IOrderEventService _events;
 
-        public OrderEventSubscriptions(IOrderEventService events) 
+        public OrderSubscription(IOrderEventService events) 
         {
+            Name = "Subscription";
             _events = events;
             AddField(new EventStreamFieldType
             {

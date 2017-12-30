@@ -31,12 +31,12 @@ namespace Samples.Schemas.Orders
             FieldAsync<OrderType>(
                 "startOrder",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<OrderActionInputType>> { Name = "orderId" }
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "orderId" }
                 ),
                 resolve: async context =>
                 {
-                    var orderInput = context.GetArgument<OrderActionInput>("orderId");
-                    return await context.TryAsyncResolve(async c => await orders.StartAsync(orderInput.OrderId));
+                    var orderId = context.GetArgument<String>("orderId");
+                    return await context.TryAsyncResolve(async c => await orders.StartAsync(orderId));
                 },
                 description: "Start an order"
             );
@@ -44,12 +44,12 @@ namespace Samples.Schemas.Orders
             FieldAsync<OrderType>(
                 "closeOrder",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<OrderActionInputType>> { Name = "orderId" }
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "orderId" }
                 ),
                 resolve: context =>
                 {
-                    var orderInput = context.GetArgument<OrderActionInput>("orderId");
-                    return context.TryAsyncResolve(async c => await orders.CloseAsync(orderInput.OrderId));
+                    var orderId = context.GetArgument<String>("orderId");
+                    return context.TryAsyncResolve(async c => await orders.CloseAsync(orderId));
                 },
                 description: "Close an order"
             );
@@ -57,12 +57,12 @@ namespace Samples.Schemas.Orders
             FieldAsync<OrderType>(
                 "completeOrder",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<OrderActionInputType>> { Name = "orderId" }
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "orderId" }
                 ),
                 resolve: async context =>
                 {
-                    var orderInput = context.GetArgument<OrderActionInput>("orderId");
-                    return await context.TryAsyncResolve(async c => await orders.CompleteAsync(orderInput.OrderId));
+                    var orderId = context.GetArgument<String>("orderId");
+                    return await context.TryAsyncResolve(async c => await orders.CompleteAsync(orderId));
                 },
                 description: "Complete an order"
             );
@@ -70,12 +70,12 @@ namespace Samples.Schemas.Orders
             FieldAsync<OrderType>(
                 "cancelOrder",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<OrderActionInputType>> { Name = "orderId" }
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "orderId" }
                 ),
                 resolve: async context =>
                 {
-                    var orderInput = context.GetArgument<OrderActionInput>("orderId");
-                    return await context.TryAsyncResolve(async c => await orders.CancelAsync(orderInput.OrderId));
+                    var orderId = context.GetArgument<String>("orderId");
+                    return await context.TryAsyncResolve(async c => await orders.CancelAsync(orderId));
                 },
                 description: "Cancel an order"
             );

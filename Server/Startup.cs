@@ -27,12 +27,11 @@ namespace Server
             services.AddSingleton<OrdersQuery>();
             services.AddSingleton<OrderType>();
             services.AddSingleton<OrderCreateInputType>();
-            services.AddSingleton<OrderActionInputType>();
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<CustomerType>();
             services.AddSingleton<OrderStatusesEnum>();
             services.AddSingleton<OrdersMutation>();
-            services.AddSingleton<OrderEventSubscriptions>();
+            services.AddSingleton<OrderSubscription>();
             services.AddSingleton<OrderEventType>();
             services.AddSingleton<IOrderEventService, OrderEventService>();
             services.AddSingleton<IEventAggregator, SimpleEventAggregator>();
