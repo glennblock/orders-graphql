@@ -26,5 +26,49 @@ namespace Samples.Schemas.Orders
         {
             return Task.FromResult(_orders.Single(o => Equals(o.Id, id)));
         }
+
+        private Order GetById(string id)
+        {
+            var order = _orders.SingleOrDefault(o => Equals(o.Id, id));
+            if (order == null)
+            {
+                throw new ArgumentException(string.Format("Order ID '{0}' is invalid", id));
+            }
+            return order;
+        }
+
+        public Task<Order> CreateAsync(Order order)
+        {
+            _orders.Add(order);
+            return Task.FromResult(order);
+        }
+
+        public Task<Order> StartAsync(string orderId)
+        {
+            var order = GetById(orderId);
+            order.Start();
+            return Task.FromResult(order);
+        }
+
+        public Task<Order> CompleteAsync(string orderId)
+        {
+            var order = GetById(orderId);
+            order.Complete();
+            return Task.FromResult(order);
+        }
+
+        public Task<Order> CloseAsync(string orderId)
+        {
+            var order = GetById(orderId);
+            order.Close();
+            return Task.FromResult(order);
+        }
+
+        public Task<Order> CancelAsync(string orderId)
+        {
+            var order = GetById(orderId);
+            order.Complete();
+            return Task.FromResult(order);
+        }
     }
 }
