@@ -1,7 +1,9 @@
+using GraphQL;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Samples.Schemas.Orders
 {
@@ -26,20 +28,20 @@ namespace Samples.Schemas.Orders
                 description: "Create a new order"
             );
 
-            Field<OrderType>(
+            FieldAsync<OrderType>(
                 "startOrder",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<OrderActionInputType>> { Name = "orderId" }
                 ),
-                resolve: context =>
+                resolve: async context =>
                 {
                     var orderInput = context.GetArgument<OrderActionInput>("orderId");
-                    return orders.StartAsync(orderInput.OrderId);
+                    return await context.TryAsyncResolve(async c => await orders.StartAsync(orderInput.OrderId));
                 },
                 description: "Start an order"
             );
 
-            Field<OrderType>(
+            FieldAsync<OrderType>(
                 "closeOrder",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<OrderActionInputType>> { Name = "orderId" }
@@ -47,33 +49,33 @@ namespace Samples.Schemas.Orders
                 resolve: context =>
                 {
                     var orderInput = context.GetArgument<OrderActionInput>("orderId");
-                    return orders.CloseAsync(orderInput.OrderId);
+                    return context.TryAsyncResolve(async c => await orders.CloseAsync(orderInput.OrderId));
                 },
                 description: "Close an order"
             );
 
-            Field<OrderType>(
+            FieldAsync<OrderType>(
                 "completeOrder",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<OrderActionInputType>> { Name = "orderId" }
                 ),
-                resolve: context =>
+                resolve: async context =>
                 {
                     var orderInput = context.GetArgument<OrderActionInput>("orderId");
-                    return orders.CompleteAsync(orderInput.OrderId);
+                    return await context.TryAsyncResolve(async c => await orders.CompleteAsync(orderInput.OrderId));
                 },
                 description: "Complete an order"
             );
 
-            Field<OrderType>(
+            FieldAsync<OrderType>(
                 "cancelOrder",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<OrderActionInputType>> { Name = "orderId" }
                 ),
-                resolve: context =>
+                resolve: async context =>
                 {
                     var orderInput = context.GetArgument<OrderActionInput>("orderId");
-                    return orders.CancelAsync(orderInput.OrderId);
+                    return await context.TryAsyncResolve(async c => await orders.CancelAsync(orderInput.OrderId));
                 },
                 description: "Cancel an order"
             );

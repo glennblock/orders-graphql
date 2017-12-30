@@ -34,7 +34,7 @@ namespace Samples.Schemas.Orders
             var order = _orders.SingleOrDefault(o => Equals(o.Id, id));
             if (order == null)
             {
-                throw new ArgumentException(string.Format("OrderID:{0} is invalid", id));
+                throw new ArgumentException(string.Format("Order ID '{0}' is invalid", id));
             }
             return order;
         }
