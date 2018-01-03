@@ -10,9 +10,7 @@ namespace Samples.Schemas.Orders
             Field(o => o.Name);
             Field(o => o.Description);
             Field<CustomerType>("customer",
-                resolve: context => {
-                return customers.GetCustomerByIdAsync(context.Source.CustomerId);
-            });
+                resolve: context => customers.GetCustomerByIdAsync(context.Source.CustomerId));
             Field(o => o.Created);
         }
     }
