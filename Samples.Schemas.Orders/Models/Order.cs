@@ -6,7 +6,7 @@ namespace Samples.Schemas.Orders
 {
     public class Order
     {
-        public Order(string name, string description, DateTime created, Customer customer, string id = null)
+        public Order(string name, string description, DateTime created, int customerId, string id = null)
         {
             if (id == null)
                 id = Guid.NewGuid().ToString();
@@ -15,7 +15,7 @@ namespace Samples.Schemas.Orders
             Name = name;
             Description = description;
             Created = created;
-            Customer = customer;
+            CustomerId = customerId;
             Status = OrderStatuses.CREATED;
         }
 
@@ -27,11 +27,9 @@ namespace Samples.Schemas.Orders
 
         public DateTime Created { get; private set; }
 
-        public Customer Customer { get; private set; }
-
         public OrderStatuses Status { get; private set; }
 
-        public int CustomerID { get; private set; }
+        public int CustomerId { get; private set; }
 
         public void Close()
         {

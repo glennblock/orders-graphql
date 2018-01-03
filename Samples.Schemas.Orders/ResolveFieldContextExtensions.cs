@@ -13,8 +13,7 @@ namespace Samples.Schemas.Orders
         {
             try
             {
-                var result = await resolve(context);
-                return Task.FromResult<object>(result);
+                return await resolve(context);
             }
             catch (Exception ex)
             {

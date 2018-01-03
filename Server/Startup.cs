@@ -35,11 +35,10 @@ namespace Server
             services.AddSingleton<OrderEventType>();
             services.AddSingleton<IOrderEventService, OrderEventService>();
             services.AddSingleton<IEventAggregator, SimpleEventAggregator>();
-
-            services.AddGraphQLHttp();
+            services.AddSingleton<IDependencyResolver>(c =>
+               new FuncDependencyResolver(type => c.GetRequiredService(type))); services.AddGraphQLHttp();
             services.AddGraphQLWebSocket<OrdersSchema>();
             services.AddMvc();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
