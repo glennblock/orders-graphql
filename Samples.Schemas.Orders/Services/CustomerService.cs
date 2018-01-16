@@ -11,10 +11,10 @@ namespace Samples.Schemas.Orders
         public CustomerService()
         {
             _customers = new List<Customer>();
-            _customers.Add(new Customer(1, "Acme"));
-            _customers.Add(new Customer(2, "Babble"));
-            _customers.Add(new Customer(3, "Contoso"));
-            _customers.Add(new Customer(4, "Disco"));
+            _customers.Add(new Customer(1, "KinetEco"));
+            _customers.Add(new Customer(2, "Pixelford Photography"));
+            _customers.Add(new Customer(3, "Topsy Turvy"));
+            _customers.Add(new Customer(4, "Leaf & Mortar"));
         }
 
         public Task<IEnumerable<Customer>> GetCustomersAsync()

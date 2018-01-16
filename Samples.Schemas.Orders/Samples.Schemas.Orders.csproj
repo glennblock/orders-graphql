@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GraphQL" Version="2.0.0-alpha-811" />
     <PackageReference Include="System.Reactive" Version="3.1.1" />
+    <PackageReference Include="GraphQL" Version="2.0.0-alpha-831" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="ResolveFieldContextExtensions.cs" />
+  </ItemGroup>
 </Project>

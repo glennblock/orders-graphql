@@ -9,7 +9,7 @@ namespace Samples.Schemas.Orders
 {
     public static class ResolveFieldContextExtensions
     {
-        public static async Task<object> TryAsyncResolve<TSource>(this ResolveFieldContext<TSource> context, Func<ResolveFieldContext<TSource>, Task<object>> resolve, Func<ExecutionErrors, Task<object>> error = null)
+        public static async Task<object> TryAsynResolve<TSource>(this ResolveFieldContext<TSource> context, Func<ResolveFieldContext<TSource>, Task<object>> resolve, Func<ExecutionErrors, Task<object>> error = null)
         {
             try
             {
