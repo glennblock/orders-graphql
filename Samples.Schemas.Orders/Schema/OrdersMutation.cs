@@ -21,8 +21,7 @@ namespace Samples.Schemas.Orders
                 resolve: context =>
                 {
                     var orderInput = context.GetArgument<OrderCreateInput>("order");
-                    var customer = customers.GetCustomerById(orderInput.CustomerId);
-                    var order = new Order(orderInput.Name, orderInput.Description, orderInput.Created, customer);
+                    var order = new Order(orderInput.Name, orderInput.Description, orderInput.Created, orderInput.CustomerId);
                     return orders.CreateAsync(order);
                 },
                 description: "Create a new order"
