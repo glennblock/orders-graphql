@@ -31,25 +31,5 @@ namespace Samples.Schemas.Orders
 
         public int CustomerId { get; private set; }
 
-        public void Close()
-        {
-            Status = OrderStatuses.CLOSED;
-        }
-
-        public void Start()
-        {
-            Status = OrderStatuses.PROCESSING;
-        }
-
-        public void Cancel()
-        {
-            Status = OrderStatuses.CANCELLED;
-        }
-
-        public void Complete()
-        {
-            Status = OrderStatuses.COMPLETED;
-        }
-
     }
 }
