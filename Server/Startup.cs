@@ -1,3 +1,4 @@
+using GraphQL;
 using GraphQL.Server.Transports.AspNetCore;
 using GraphQL.Server.Transports.WebSockets;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +31,8 @@ namespace Server
             services.AddSingleton<OrderCreateInputType>();
             services.AddSingleton<OrdersMutation>();
             services.AddSingleton<OrdersSchema>();
+            services.AddSingleton<IDependencyResolver>(c =>
+               new FuncDependencyResolver(type => c.GetRequiredService(type))); 
             services.AddGraphQLHttp();
             services.AddGraphQLWebSocket<OrdersSchema>();
             services.AddMvc();
